@@ -6,7 +6,7 @@ class MonthData {
         return NUMBER_OF_STEPS;
     }
 
-    public int getNUMBER_DAYS_OF_MONTH() {
+    public int getNumberDaysOfMonth() {
         return NUMBER_DAYS_OF_MONTH;
     }
 

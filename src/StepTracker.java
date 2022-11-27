@@ -47,7 +47,7 @@ public class StepTracker {
             }
         }
         theBestSeries = Math.max(theBestSeries, countSeries);
-    double averageNumberOfSteps = totalSteps / (double) monthToData[month].getNUMBER_DAYS_OF_MONTH();
+    double averageNumberOfSteps = totalSteps / (double) monthToData[month].getNumberDaysOfMonth();
         System.out.println(printStatisticsByDay);
         System.out.println("Общее количество шагов за месяц: " + totalSteps);
         System.out.println("Максимальное пройденное количество шагов в месяце: " + maxNumberOfSteps);
