@@ -34,10 +34,8 @@ public class StepTracker {
         for (int i = 0; i < numberOfStepsPerDay.length; i++) {
             if (i < numberOfStepsPerDay.length - 1) {
                 printStatisticsByDay.append(i + 1).append(" день: ").append(numberOfStepsPerDay[i]).append(", ");
-                //System.out.print(i + 1 + " день: " + monthToData[month].getNumberOfStepsPerDay(i) + ", ");
             } else {
                 printStatisticsByDay.append(i + 1).append(" день: ").append(numberOfStepsPerDay[i]);
-                //System.out.println(i + 1 + " день: " + monthToData[month].getNumberOfStepsPerDay(i));
             }
             totalSteps += numberOfStepsPerDay[i];
             maxNumberOfSteps = Math.max(maxNumberOfSteps, numberOfStepsPerDay[i]);
