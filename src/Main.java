@@ -11,10 +11,10 @@ public class Main {
                 System.out.println("Укажите номер месяца:\n" +
                         "1. Январь\n" + "2. Февраль\n" + "3. Март\n" + "4. Апрель\n" + "5. Май\n" + "6. Июнь\n" +
                         "7. Июль\n" + "8. Август\n" + "9. Сентябрь\n" + "10. Октябрь\n" + "11. Ноябрь\n" + "12. Декабрь");
-                int month = checkInput(in, 1, 12, Errors.INCORRECT_NUMBER.MESSAGE);
+                int month = checkInput(in, 1, 12, Errors.INCORRECT_NUMBER.MESSAGE) - 1;
 
                 System.out.println("Укажите число месяца:");
-                int day = checkInput(in, 1, 30, Errors.INCORRECT_DAY.MESSAGE);
+                int day = checkInput(in, 1, 30, Errors.INCORRECT_DAY.MESSAGE) - 1;
 
                 System.out.println("Укажите количество шагов:");
                 int numberOfSteps = checkInput(in, 0, Integer.MAX_VALUE, Errors.INCORRECT_NUMBER_OF_STEPS.MESSAGE);
@@ -23,8 +23,15 @@ public class Main {
                 System.out.println("Укажите номер месяца:\n" +
                         "1. Январь\n" + "2. Февраль\n" + "3. Март\n" + "4. Апрель\n" + "5. Май\n" + "6. Июнь\n" +
                         "7. Июль\n" + "8. Август\n" + "9. Сентябрь\n" + "10. Октябрь\n" + "11. Ноябрь\n" + "12. Декабрь");
-                int month = checkInput(in, 1, 12, "Неверно указан номер. Введите номер еще раз:");
-                stepTracker.printStatistic(month);
+                int month = checkInput(in, 1, 12, Errors.INCORRECT_NUMBER.MESSAGE) - 1;
+
+                System.out.println(stepTracker.getNumberOfStepsByDay(month));
+                System.out.println("Общее количество шагов за месяц: " + stepTracker.getTotalNumberOfStepsPerMonth(month));
+                System.out.println("Максимальное пройденное количество шагов в месяце: " + stepTracker.getMaxNumberOfStepsPerDay(month));
+                System.out.printf("Среднее количество шагов за месяц: %.2f\n", stepTracker.getAverageNumberOfStepsPerMonth(month));
+                System.out.printf("Пройденная дистанция за месяц (в км): %.2f\n", stepTracker.getDistance(month));
+                System.out.printf("Количество сожжённых килокалорий: %.2f\n", stepTracker.getKilocalories(month));
+                System.out.println("Лучшая серия: " + stepTracker.getTheBestSeries(month));
             } else if (command == 3) {
                 System.out.println("Укажите новую цель по количеству шагов:");
                 int newGoal = checkInput(in, 0, Integer.MAX_VALUE, Errors.INCORRECT_NUMBER_OF_STEPS.MESSAGE);
