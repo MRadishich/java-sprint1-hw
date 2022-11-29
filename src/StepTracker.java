@@ -20,10 +20,13 @@ public class StepTracker {
         this.goal = goal;
     }
 
-    //При сохранении шагов за день подсчитывается общее количество шагов.
-    public void saveSteps(int month, int day, int numberOfSteps) {
+    public void saveAndCountingSteps(int month, int day, int numberOfSteps) {
         countTotalSteps(month, numberOfSteps - monthToData[month].getNumberOfStepsPerDay(day));
         monthToData[month].setNumberOfSteps(day, numberOfSteps);
+    }
+
+    public void countTotalSteps(int month, int numberOfSteps) {
+        monthToData[month].setTotalSteps(monthToData[month].getTotalSteps() + numberOfSteps);
     }
 
     public String getNumberOfStepsByDay(int month) {
@@ -43,9 +46,20 @@ public class StepTracker {
         return monthToData[month].getTotalSteps();
     }
 
-    //Хотел избавиться от цилка при поиске максимального количества шагов, попробовал использовать stream
     public int getMaxNumberOfStepsPerDay(int month) {
         return Arrays.stream(monthToData[month].getNumberOfSteps()).max().orElse(0);
+    }
+
+    public double getAverageNumberOfStepsPerMonth(int month) {
+        return monthToData[month].getTotalSteps() / (double) monthToData[month].getNumberOfDaysMonth();
+    }
+
+    public double getDistance(int month) {
+        return converter.calculateDistance(monthToData[month].getTotalSteps());
+    }
+
+    public double getKilocalories(int month) {
+        return converter.calculateKilocalories(monthToData[month].getTotalSteps());
     }
 
     public int getTheBestSeries(int month) {
@@ -62,22 +76,6 @@ public class StepTracker {
         }
         theBestSeries = Math.max(theBestSeries, countSeries);
         return theBestSeries;
-    }
-
-    public double getAverageNumberOfStepsPerMonth(int month) {
-        return monthToData[month].getTotalSteps() / (double) monthToData[month].getNumberOfDaysMonth();
-    }
-
-    public double getDistance(int month) {
-        return converter.calculateDistance(monthToData[month].getTotalSteps());
-    }
-
-    public double getKilocalories(int month) {
-        return converter.calculateKilocalories(monthToData[month].getTotalSteps());
-    }
-
-    public void countTotalSteps(int month, int numberOfSteps) {
-        monthToData[month].setTotalSteps(monthToData[month].getTotalSteps() + numberOfSteps);
     }
 
 }
