@@ -29,8 +29,12 @@ public class StepTracker {
         monthToData[month].setTotalSteps(monthToData[month].getTotalSteps() + numberOfSteps);
     }
 
-    public String getNumberOfStepsByDay(int month) {
+    public String printNumberOfStepsPerDay(int month) {
         int[] numberOfStepsPerDay = monthToData[month].getNumberOfSteps();
+        return getNumberOfStepsPerDay(numberOfStepsPerDay);
+    }
+
+    private static String getNumberOfStepsPerDay(int[] numberOfStepsPerDay) {
         StringBuilder printStatisticsByDay = new StringBuilder();
         for (int i = 0; i < numberOfStepsPerDay.length; i++) {
             if (i < numberOfStepsPerDay.length - 1) {
@@ -77,6 +81,5 @@ public class StepTracker {
         theBestSeries = Math.max(theBestSeries, countSeries);
         return theBestSeries;
     }
-
 }
 

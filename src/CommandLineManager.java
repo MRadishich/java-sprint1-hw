@@ -51,6 +51,7 @@ public class CommandLineManager {
         return value;
     }
 
+
     private void readMonthDayAndNumberOfSteps() {
         int month = readTheNumberOfTheMonth();
         int day = readTheNumberOfTheDay();
@@ -78,19 +79,26 @@ public class CommandLineManager {
     private void printStatisticByMonth() {
         int month = readTheNumberOfTheMonth();
 
-        System.out.println(stepTracker.getNumberOfStepsByDay(month));
-        System.out.println("Общее количество шагов за месяц: " + stepTracker.getTotalNumberOfStepsPerMonth(month));
-        System.out.println("Максимальное пройденное количество шагов в месяце: " + stepTracker.getMaxNumberOfStepsPerDay(month));
-        System.out.printf("Среднее количество шагов за месяц: %.2f\n", stepTracker.getAverageNumberOfStepsPerMonth(month));
-        System.out.printf("Пройденная дистанция за месяц (в км): %.2f\n", stepTracker.getDistance(month));
-        System.out.printf("Количество сожжённых килокалорий: %.2f\n", stepTracker.getKilocalories(month));
-        System.out.println("Лучшая серия: " + stepTracker.getTheBestSeries(month));
+        System.out.printf(stepTracker.printNumberOfStepsPerDay(month) + "\n" +
+                        "Общее количество шагов за месяц: %d\n" +
+                        "Максимальное пройденное количество шагов в месяце: %d\n" +
+                        "Среднее количество шагов за месяц: %.2f\n" +
+                        "Пройденная дистанция за месяц (в км): %.2f\n" +
+                        "Количество сожжённых килокалорий: %.2f\n" +
+                        "Лучшая серия: %d\n",
+                stepTracker.getTotalNumberOfStepsPerMonth(month), stepTracker.getMaxNumberOfStepsPerDay(month),
+                stepTracker.getAverageNumberOfStepsPerMonth(month), stepTracker.getDistance(month),
+                stepTracker.getKilocalories(month), stepTracker.getTheBestSeries(month));
     }
 
     private void changeDailyStepsGoal() {
-        System.out.println("Укажите новую цель по количеству шагов:");
-        int newGoal = checkInput(in, 0, Integer.MAX_VALUE, Errors.INCORRECT_NUMBER_OF_STEPS.MESSAGE);
+        int newGoal = getNewGoal();
         stepTracker.setGoal(newGoal);
         System.out.println("Цель по количеству шагов была изменена. Новая цель: " + stepTracker.getGoal());
+    }
+
+    private int getNewGoal() {
+        System.out.println("Укажите новую цель по количеству шагов:");
+        return checkInput(in, 0, Integer.MAX_VALUE, Errors.INCORRECT_NUMBER_OF_STEPS.MESSAGE);
     }
 }
