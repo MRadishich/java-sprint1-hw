@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class CommandLineManager {
@@ -13,15 +14,19 @@ public class CommandLineManager {
         while (true) {
             printMenu();
             int command = checkInput(in, 1, 4, Errors.INCORRECT_NUMBER.MESSAGE);
-            if (command == 1) {
-                readMonthDayAndNumberOfSteps();
-            } else if (command == 2) {
-                printStatisticByMonth();
-            } else if (command == 3) {
-                changeDailyStepsGoal();
-            } else if (command == 4) {
-                System.out.println("Выход");
-                break;
+            switch (Objects.requireNonNull(Commands.findCommand(command - 1))) {
+                case ENTER_STEPS:
+                    readMonthDayAndNumberOfSteps();
+                    break;
+                case PRINT_STATISTIC:
+                    printStatisticByMonth();
+                    break;
+                case CHANGE_GOAL:
+                    changeDailyStepsGoal();
+                    break;
+                case EXIT:
+                    System.out.println("Выход");
+                    return;
             }
         }
     }
@@ -51,10 +56,9 @@ public class CommandLineManager {
         return value;
     }
 
-
     private void readMonthDayAndNumberOfSteps() {
         int month = readTheNumberOfTheMonth();
-        int day = readTheNumberOfTheDay();
+        int day = readTheNumberOfTheDay(month);
         int numberOfSteps = readTheNumberOfStepsPerDay();
         stepTracker.saveAndCountingSteps(month, day, numberOfSteps);
     }
@@ -66,9 +70,9 @@ public class CommandLineManager {
         return checkInput(in, 1, 12, Errors.INCORRECT_NUMBER.MESSAGE) - 1;
     }
 
-    private int readTheNumberOfTheDay() {
+    private int readTheNumberOfTheDay(int month) {
         System.out.println("Укажите число месяца:");
-        return checkInput(in, 1, 30, Errors.INCORRECT_DAY.MESSAGE) - 1;
+        return checkInput(in, 1, Month.getMaxDays(month), Errors.INCORRECT_DAY.MESSAGE) - 1;
     }
 
     private int readTheNumberOfStepsPerDay() {

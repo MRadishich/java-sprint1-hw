@@ -1,6 +1,15 @@
 class MonthData {
-    private final int NUMBER_OF_DAYS_MONTH = 30;
-    private final int[] NUMBER_OF_STEPS = new int[NUMBER_OF_DAYS_MONTH];
+
+    private final int NUMBER_OF_DAYS_MONTH;
+    private final int[] NUMBER_OF_STEPS;
+
+    MonthData(int maxDays) {
+        this.NUMBER_OF_DAYS_MONTH = maxDays;
+        this.NUMBER_OF_STEPS = new int[NUMBER_OF_DAYS_MONTH];
+    }
+
+//    private final int NUMBER_OF_DAYS_MONTH = 30;
+//    private final int[] NUMBER_OF_STEPS = new int[NUMBER_OF_DAYS_MONTH];
     private int totalSteps = 0;
 
     public int getTotalSteps() {

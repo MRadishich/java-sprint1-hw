@@ -8,7 +8,7 @@ public class StepTracker {
     public StepTracker() {
         monthToData = new MonthData[12];
         for (int i = 0; i < monthToData.length; i++) {
-            monthToData[i] = new MonthData();
+            monthToData[i] = new MonthData(Month.getMaxDays(i));
         }
     }
 
