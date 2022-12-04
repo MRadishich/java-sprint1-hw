@@ -1,3 +1,5 @@
+package CommandManager;
+
 public enum Errors {
     INCORRECT_NUMBER("Неверно указан номер. Введите номер еще раз:"),
     INCORRECT_DAY("Неверно указано число. Введите число еще раз:"),

@@ -1,3 +1,5 @@
+package CommandManager;
+
 import java.util.Arrays;
 
 public class StepTracker {

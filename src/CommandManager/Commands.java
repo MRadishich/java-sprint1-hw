@@ -1,3 +1,5 @@
+package CommandManager;
+
 public enum Commands {
     ENTER_STEPS, PRINT_STATISTIC, CHANGE_GOAL, EXIT;
 

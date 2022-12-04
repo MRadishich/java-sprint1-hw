@@ -1,3 +1,5 @@
+package CommandManager;
+
 public enum Month {
     JANUARY(31),
     FEBRUARY(28),
@@ -11,7 +13,6 @@ public enum Month {
     OCTOBER( 31),
     NOVEMBER( 30),
     DECEMBER(31);
-
 
     private final int maxDays;
 

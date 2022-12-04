@@ -1,10 +1,12 @@
+package CommandManager;
+
 import java.util.Objects;
 import java.util.Scanner;
 
 public class CommandLineManager {
     private final Scanner in;
 
-    CommandLineManager(Scanner in) {
+    public CommandLineManager(Scanner in) {
         this.in = in;
     }
     
@@ -13,7 +15,7 @@ public class CommandLineManager {
     public void printMenuAndHandleCommandInfinity() {
         while (true) {
             printMenu();
-            int command = checkInput(in, 1, 4, Errors.INCORRECT_NUMBER.MESSAGE);
+            int command = checkInput(in, 1, Commands.values().length, Errors.INCORRECT_NUMBER.MESSAGE);
             switch (Objects.requireNonNull(Commands.findCommand(command - 1))) {
                 case ENTER_STEPS:
                     readMonthDayAndNumberOfSteps();
@@ -67,7 +69,7 @@ public class CommandLineManager {
         System.out.println("Укажите номер месяца:\n" +
                 "1. Январь\n" + "2. Февраль\n" + "3. Март\n" + "4. Апрель\n" + "5. Май\n" + "6. Июнь\n" +
                 "7. Июль\n" + "8. Август\n" + "9. Сентябрь\n" + "10. Октябрь\n" + "11. Ноябрь\n" + "12. Декабрь");
-        return checkInput(in, 1, 12, Errors.INCORRECT_NUMBER.MESSAGE) - 1;
+        return checkInput(in, 1, Month.values().length, Errors.INCORRECT_NUMBER.MESSAGE) - 1;
     }
 
     private int readTheNumberOfTheDay(int month) {
